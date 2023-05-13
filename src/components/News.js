@@ -11,7 +11,7 @@ const News = (props) => {
   React.useEffect(() => {
     async function fetchData() {
       setLoading(true);
-      let url = `https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=35bebd1518d343f8b32dfcd873ae72c1&pageSize=${props.pageSize}`;
+      let url = `https://newsapi.org/v2/top-headlines?country=us&category=${props.category}&apiKey=35bebd1518d343f8b32dfcd873ae72c1&pageSize=${props.pageSize}`;
       let data = await fetch(url);
       let parseData = await data.json();
 
@@ -25,9 +25,11 @@ const News = (props) => {
 
   const setPrevious = async () => {
     setLoading(true);
-    let url = `https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=35bebd1518d343f8b32dfcd873ae72c1&page=${
-      pageCount - 1
-    }&pageSize=${props.pageSize}`;
+    let url = `https://newsapi.org/v2/top-headlines?country=us&category=${
+      props.category
+    }&apiKey=35bebd1518d343f8b32dfcd873ae72c1&page=${pageCount - 1}&pageSize=${
+      props.pageSize
+    }`;
     let data = await fetch(url);
     let parseData = await data.json();
 
@@ -39,7 +41,9 @@ const News = (props) => {
   const setNext = async () => {
     if (totalResults / props.pageSize >= pageCount) {
       setLoading(true);
-      let url = `https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=35bebd1518d343f8b32dfcd873ae72c1&page=${
+      let url = `https://newsapi.org/v2/top-headlines?country=us&category=${
+        props.category
+      }&apiKey=35bebd1518d343f8b32dfcd873ae72c1&page=${
         pageCount + 1
       }&pageSize=${props.pageSize}`;
       let data = await fetch(url);
@@ -71,6 +75,7 @@ const News = (props) => {
                   }
                   imageUrl={elements.urlToImage}
                   newsUrl={elements.url}
+                  key={elements.url}
                 />
               </div>
             );

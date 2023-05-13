@@ -3,7 +3,7 @@ import React from "react";
 const NewsItem = (props) => {
   let { title, desc, imageUrl, newsUrl } = props;
   return (
-    <div>
+    <div className="col md-4">
       <div className="card" style={{ width: "18rem" }}>
         <img src={imageUrl} className="card-img-top" alt="..." />
         <div className="card-body">
